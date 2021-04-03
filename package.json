@@ -1,0 +1,22 @@
+{
+  "name": "node-angular-demo",
+  "version": "1.0.0",
+  "scripts": {
+    "lint": "lerna run lint",
+    "test": "lerna run test",
+    "setup": "npm i && lerna run bootstrap"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run test"
+    }
+  },
+  "devDependencies": {
+    "husky": "4.2.5",
+    "lerna": "^3.22.1"
+  },
+  "dependencies": {
+    "g": "^2.0.1"
+  }
+}

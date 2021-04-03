@@ -1,0 +1,41 @@
+<h3><u>Register New User</u></h3>
+<a class="forgotLink" routerLink="/login">Already have an account, sign in ?</a>
+
+<div class="registerUser">
+    <form [formGroup]="registerForm" (ngSubmit)="register()" novalidate>
+        <mat-form-field>
+            <input matInput type="email" formControlName="email" placeholder="Email" required>
+            <mat-error>
+                <app-error-message [control]="registerForm.controls.email"></app-error-message>
+            </mat-error>
+        </mat-form-field><br>
+        <mat-form-field>
+            <input matInput type="text" formControlName="userName" placeholder="User Name" required>
+            <mat-error>
+                <app-error-message [control]="registerForm.controls.userName"></app-error-message>
+            </mat-error>
+        </mat-form-field><br>
+        <mat-form-field>
+            <mat-select formControlName="role" placeholder="Select role" required>
+              <mat-option *ngFor="let role of roles" [value]="role.name">{{
+                role.name
+              }}</mat-option>
+            </mat-select>
+            <mat-error>
+              <app-error-message
+                [control]="registerForm.controls.role"
+              ></app-error-message>
+            </mat-error>
+          </mat-form-field><br />
+        <mat-form-field>
+            <input matInput type="password" formControlName="password" placeholder="Password" required>
+            <mat-error>
+                <app-error-message [control]="registerForm.controls.password"></app-error-message>
+            </mat-error>
+        </mat-form-field><br>
+        <div class="btnSubmit">
+            <button mat-raised-button type="submit" class="form-btn" color="primary"
+                [disabled]="registerForm.invalid">Register</button>
+        </div>
+    </form>
+</div>

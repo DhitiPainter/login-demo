@@ -1,0 +1,69 @@
+<div class="userLogin">
+  <h3 class="sign-in">Sign In</h3>
+  <form
+    class="login-form"
+    [formGroup]="loginForm"
+    (ngSubmit)="loginUser(loginForm)"
+    novalidate
+  >
+    <div>
+      <mat-form-field>
+        <input
+          matInput
+          type="email"
+          formControlName="email"
+          placeholder="User Email"
+          required
+        />
+        <mat-error>
+          <app-error-message
+            [control]="loginForm.controls.email"
+          ></app-error-message>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <!-- <div>
+      <mat-form-field>
+        <mat-select formControlName="role" placeholder="Select role" required>
+          <mat-option *ngFor="let role of roles" [value]="role.id">{{
+            role.name
+          }}</mat-option>
+        </mat-select>
+        <mat-error>
+          <app-error-message
+            [control]="loginForm.controls.role"
+          ></app-error-message>
+        </mat-error>
+      </mat-form-field>
+    </div> -->
+    <div>
+      <mat-form-field>
+        <input
+          matInput
+          type="password"
+          formControlName="password"
+          placeholder="Password"
+          required
+        />
+        <mat-error>
+          <app-error-message
+            [control]="loginForm.controls.password"
+          ></app-error-message>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <button
+      mat-raised-button
+      class="form-btn btnSubmit"
+      color="primary"
+      [disabled]="loginForm.invalid"
+    >
+      Submit
+    </button>
+  </form>
+  <div class="link-row">
+    <a class="link" routerLink="/forgot-password">Forgot Password ?</a>
+    <a class="link" routerLink="/signup">Create an account</a>
+  </div>
+</div>

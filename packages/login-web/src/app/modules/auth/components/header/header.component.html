@@ -1,0 +1,38 @@
+<mat-toolbar color="primary">
+  <span (click)="toggleSide()">
+    <img class="logo" src="../../../../../assets/images/app-logo.png"
+      aria-hidden="false" aria-label="logo" />
+  </span>
+  <mat-toolbar-row>
+    <span class="search-bar">
+      <mat-form-field>
+        <input matInput placeholder="search" [(ngModel)]="search" value="{{search}}"
+          (change)="onSearch()" />
+        <mat-icon aria-hidden="false" aria-label="Example delete icon">search</mat-icon>
+      </mat-form-field>
+    </span>
+    <span class="example-spacer"></span>
+    <mat-icon class="example-icon" aria-hidden="false" aria-label="Notification icon">
+      {{notifications ? 'notifications' : 'notifications_none'}}</mat-icon>
+    <mat-icon class="example-icon" aria-hidden="false" aria-label="Heart icon">favorite</mat-icon>
+    <mat-icon class="example-icon cart-count" aria-hidden="false" aria-label="Cart icon" matBadge="{{cartItemsCount}}"
+      matBadgeColor="accent">
+      shopping_cart</mat-icon>
+    <mat-icon [matMenuTriggerFor]="menu" class="example-icon" aria-hidden="false" aria-label="Menu icon">menu</mat-icon>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>person</mat-icon>
+    <span>Profile</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>notifications_off</mat-icon>
+    <span>Disable Notifications</span>
+  </button>
+  <button mat-menu-item (click)="logout()">
+    <mat-icon>power_settings_new</mat-icon>
+    <span>Logout</span>
+  </button>
+</mat-menu>
