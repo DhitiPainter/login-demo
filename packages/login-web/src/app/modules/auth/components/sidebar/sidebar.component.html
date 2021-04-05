@@ -2,8 +2,7 @@
   <mat-sidenav #sidenav mode="side" opened="true" class="side-nav">
     <mat-nav-list>
       <div *ngFor="let nav of sidebarList">
-        <mat-list-item class="parent" (click)="onClickMenuItem(nav)">
-          <!--  *ngIf="nav.hasAccess"> -->
+        <mat-list-item class="parent" (click)="onClickMenuItem(nav)" *ngIf="nav.hasAccess">
           <mat-icon mat-list-icon *ngIf="nav.icon" class="item-icon">{{
             nav.icon
           }}</mat-icon>
@@ -24,8 +23,7 @@
           *ngIf="nav.isExpanded"
         >
           <div *ngFor="let subMenu of nav.subMenus">
-            <mat-list-item (click)="onClickMenuItem(subMenu)">
-              <!--  *ngIf="nav.hasAccess"> -->
+            <mat-list-item (click)="onClickMenuItem(subMenu)" *ngIf="nav.hasAccess">
               <mat-icon class="item-icon" mat-list-icon *ngIf="subMenu.icon">{{
                 subMenu.icon
               }}</mat-icon>

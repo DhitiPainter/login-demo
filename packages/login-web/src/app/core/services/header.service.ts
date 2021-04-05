@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HeaderService {
   showSideBar = false;
   cartCount = 0;
 
-  toggleSideBar() {
+  toggleSideBar(): any {
     this.showSideBar = !this.showSideBar;
   }
 
-  getCartItemCounts() {
+  getCartItemCounts(): any {
     return this.cartCount;
   }
 }

@@ -16,14 +16,14 @@ export class AuthService {
     return localStorage.getItem(this.jwtToken);
   }
 
-  setAuthToken(token: string) {
+  setAuthToken(token: string): any {
     localStorage.setItem(this.jwtToken, token);
   }
 
-  destroyToken() {
+  destroyToken(): any {
     window.localStorage.removeItem(this.jwtToken);
   }
-  setSessionRole(role: any) {
+  setSessionRole(role: any): any {
     const sessionRole: any = this.commonService.userRoles.find(
       (x: any) => x.name === role
     );
@@ -42,11 +42,11 @@ export class AuthService {
     }
   }
 
-  getSessionRole() {
+  getSessionRole(): any {
     return sessionStorage.getItem(this.userRole);
   }
 
-  logout() {
+  logout(): any {
     localStorage.clear();
     sessionStorage.clear();
   }

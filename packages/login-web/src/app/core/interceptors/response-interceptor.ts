@@ -60,7 +60,7 @@ export class ResponseInterceptor implements HttpInterceptor {
                   'Error',
                   {
                     duration: 2500,
-                    verticalPosition: 'top',
+                    verticalPosition: 'bottom',
                   }
                 );
                 return this.handle400Error(err);
@@ -72,18 +72,17 @@ export class ResponseInterceptor implements HttpInterceptor {
                   'Error',
                   {
                     duration: 2500,
-                    verticalPosition: 'top',
+                    verticalPosition: 'bottom',
                   }
                 );
                 return throwError(err);
-              // return this.handle401Error(req, next, err);
               case 403:
                 this.snackBar.open(
                   err.error.ResponseException.ExceptionMessage,
                   'Error',
                   {
                     duration: 2500,
-                    verticalPosition: 'top',
+                    verticalPosition: 'bottom',
                   }
                 );
                 return throwError(err);
@@ -93,21 +92,20 @@ export class ResponseInterceptor implements HttpInterceptor {
                   'Error',
                   {
                     duration: 2500,
-                    verticalPosition: 'top',
+                    verticalPosition: 'bottom',
                   }
                 );
                 return throwError(err);
               case 422:
                 this.snackBar.open(
-                  err.error.ResponseException.ValidationErrors[0].Message,
+                  err.error.ResponseException.ExceptionMessage,
                   'Error',
                   {
                     duration: 2500,
-                    verticalPosition: 'top',
+                    verticalPosition: 'bottom',
                   }
                 );
                 return throwError(err);
-                break;
               default:
                 return throwError(err);
             }
@@ -118,7 +116,7 @@ export class ResponseInterceptor implements HttpInterceptor {
       );
   }
 
-  handle400Error(error: any) {
+  handle400Error(error: any): Observable<never> {
     if (
       error &&
       error.status === 400 &&
@@ -132,7 +130,7 @@ export class ResponseInterceptor implements HttpInterceptor {
     return throwError(error);
   }
 
-  logoutUser(err: any) {
+  logoutUser(err: any): Observable<never> {
     this.authService.logout();
     return throwError(err);
     // Route to the login page (implementation up to you)

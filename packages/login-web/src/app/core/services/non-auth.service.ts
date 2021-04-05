@@ -15,7 +15,7 @@ export class NonAuthService {
     private authService: AuthService
   ) {}
 
-  loginUser(userModel: UserLogin) {
+  loginUser(userModel: UserLogin): any {
     return this.httpService.post(`api/authenticate`, userModel).pipe(
       catchError((error) => {
         return throwError(error);
@@ -27,7 +27,7 @@ export class NonAuthService {
     );
   }
 
-  registerUser(user: UserLogin) {
+  registerUser(user: UserLogin): any {
     return this.httpService.post(`api/register`, user).pipe(
       catchError((error) => {
         return throwError(error);
@@ -38,7 +38,7 @@ export class NonAuthService {
     );
   }
 
-  ForgotPassword(email: string) {
+  ForgotPassword(email: string): any {
     return this.httpService.get(`api/User/ForgotPassword?email=${email}`);
   }
 }

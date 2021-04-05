@@ -6,15 +6,17 @@ import { HeaderService } from 'src/app/core/services';
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
-  styleUrls: ['./landing-page.component.scss']
+  styleUrls: ['./landing-page.component.scss'],
 })
 export class LandingPageComponent implements OnInit {
-  constructor(private broadcastService: BroadcastService, protected headerService: HeaderService) { }
+  constructor(
+    private broadcastService: BroadcastService,
+    public headerService: HeaderService
+  ) {}
 
-  ngOnInit() {
-    this.broadcastService.on(BroadcastKeys.headerSearchValue).subscribe(x => {
+  ngOnInit(): any {
+    this.broadcastService.on(BroadcastKeys.headerSearchValue).subscribe((x) => {
       console.log(x);
     });
   }
-
 }

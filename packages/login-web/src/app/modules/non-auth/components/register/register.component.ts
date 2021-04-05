@@ -15,7 +15,7 @@ import { BroadcastKeys } from 'src/app/core/common.constant';
 })
 export class RegisterComponent implements OnInit, OnDestroy {
   registerForm: FormGroup;
-  rolesSub: Subscription = new Subscription;
+  rolesSub: Subscription = new Subscription();
   roles: any[] = this.commonService.userRoles;
 
   constructor(
@@ -36,23 +36,23 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.rolesSub = this.broadcastService
-    .on(BroadcastKeys.userRoles)
-    .subscribe((data: any) => {
-      this.roles = data;
-    });
+      .on(BroadcastKeys.userRoles)
+      .subscribe((data: any) => {
+        this.roles = data;
+      });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.rolesSub.unsubscribe();
   }
 
-  register() {
+  register(): any {
     if (this.registerForm.invalid) {
       return;
     }
     this.nonAuthService
       .registerUser(this.registerForm.value)
-      .subscribe((response) => {
+      .subscribe((response: any) => {
         this.router.navigate(['/login']);
       });
   }

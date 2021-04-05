@@ -14,7 +14,9 @@ export class AppComponent implements OnInit {
     private broadcastService: BroadcastService
   ) {}
 
-  ngOnInit() {
+  title = 'login-web';
+
+  ngOnInit(): void {
     this.commonService.getRoles().subscribe((response: any) => {
       this.commonService.userRoles = response;
       this.broadcastService.broadcast(BroadcastKeys.userRoles, response);

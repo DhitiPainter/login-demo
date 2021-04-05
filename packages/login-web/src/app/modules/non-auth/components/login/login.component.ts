@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  TemplateRef,
-  ViewChild,
-  OnDestroy,
-} from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -30,10 +24,10 @@ import { CommonService } from 'src/app/core/services/common.service';
 })
 export class LoginComponent implements OnInit, OnDestroy {
   userRoleId: any;
-  // @ViewChild('secondDialog', { static: true }) secondDialog: TemplateRef<any>;
   loginForm: FormGroup;
-  rolesSub: Subscription = new Subscription;
+  rolesSub: Subscription = new Subscription();
   roles: any[] = this.commonService.userRoles;
+  error: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -47,12 +41,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loginForm = this.formBuilder.group({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required]),
-      // role: new FormControl('', [Validators.required]),
     });
   }
 
-  // Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]
-  ngOnInit() {
+  ngOnInit(): any {
     this.rolesSub = this.broadcastService
       .on(BroadcastKeys.userRoles)
       .subscribe((data: any) => {
@@ -60,25 +52,22 @@ export class LoginComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): any {
     this.rolesSub.unsubscribe();
+    this.error = null;
   }
 
-  loginUser(form: any) {
+  loginUser(form: any): any {
     if (this.loginForm.invalid) {
       return;
     }
-    this.nonAuthService.loginUser(form.value).subscribe((response) => {
+    this.nonAuthService.loginUser(form.value).subscribe((response: any) => {
       this.authService.setAuthToken(response.token);
       window.location.reload();
     });
   }
 
-  openDialogWithoutRef() {
-    // this.matDialog.open(this.secondDialog);
-  }
-
-  clearLocalStorage() {
+  clearLocalStorage(): any {
     this.authService.logout();
     this.router.navigate(['./login']);
   }

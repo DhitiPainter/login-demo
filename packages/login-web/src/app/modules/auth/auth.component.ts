@@ -7,5 +7,5 @@ import { HeaderService } from 'src/app/core/services';
   styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent {
-  constructor(protected headerService: HeaderService) {}
+  constructor(public headerService: HeaderService) {}
 }

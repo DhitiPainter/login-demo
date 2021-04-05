@@ -57,16 +57,16 @@ export class SidebarComponent implements OnInit, OnChanges {
   ) {
     this.userRole = this.authService.getSessionRole();
     this.sidebarList = [];
-    this.opened = true;    
+    this.opened = true;
   }
 
-  ngOnChanges(sub: SimpleChanges) {
+  ngOnChanges(sub: SimpleChanges): any {
     if (sub.opened && sub.opened.currentValue !== sub.opened.previousValue) {
-      this.opened = sub.opened.currentValue; 
+      this.opened = sub.opened.currentValue;
     }
   }
 
-  ngOnInit() {
+  ngOnInit(): any {
     this.opened = this.headerService.showSideBar;
 
     this.sidebarList = SideBar.map((x) => {
@@ -85,7 +85,7 @@ export class SidebarComponent implements OnInit, OnChanges {
     });
   }
 
-  onClickMenuItem(nav: any) {
+  onClickMenuItem(nav: any): any {
     if (nav.subMenus) {
       this.sidebarList[this.sidebarList.indexOf(nav)].isExpanded = !this
         .sidebarList[this.sidebarList.indexOf(nav)].isExpanded;

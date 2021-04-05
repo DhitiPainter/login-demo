@@ -12,7 +12,7 @@ import { BroadcastKeys } from 'src/app/core/common.constant';
 })
 export class HeaderComponent implements OnInit {
   notifications = null;
-  search: string = '';
+  search = '';
   cartItemsCount = 0;
   constructor(
     private router: Router,
@@ -21,25 +21,25 @@ export class HeaderComponent implements OnInit {
     public headerService: HeaderService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): any {
     this.cartItemsCount = this.headerService.getCartItemCounts();
     this.broadcastService.on(BroadcastKeys.cartCount).subscribe(() => {
       this.cartItemsCount = this.headerService.getCartItemCounts();
     });
   }
 
-  toggleSide() {
+  toggleSide(): void {
     this.headerService.toggleSideBar();
   }
 
-  onSearch() {
+  onSearch(): any {
     this.broadcastService.broadcast(
       BroadcastKeys.headerSearchValue,
       this.search
     );
   }
 
-  logout() {
+  logout(): void {
     this.authService.logout();
     this.router.navigate(['/login']);
   }

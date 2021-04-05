@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { throwError, interval, Observable } from 'rxjs';
-import { catchError, flatMap } from 'rxjs/operators';
+import { catchError, mergeMap } from 'rxjs/operators';
 
 import { HttpClientService } from 'src/app/core/interceptors/http-client.service';
 import { BroadcastService } from './broadcast.service';
@@ -17,7 +17,7 @@ export class CommonService {
     private broadcastService: BroadcastService
   ) {}
 
-  getRoles() {
+  getRoles(): any {
     return new Observable((observer) =>
       observer.next([
         {
@@ -36,20 +36,20 @@ export class CommonService {
     );
   }
 
-  getUserRoles() {
+  getUserRoles(): any {
     interval(30 * 1000)
       .pipe(
         catchError((error) => {
           return throwError(error);
         }),
-        flatMap(() => this.getRoles())
+        mergeMap(() => this.getRoles())
       )
       .subscribe((response: any) => {
         this.onRoleSuscription(response);
       });
   }
 
-  private onRoleSuscription(response: any) {
+  private onRoleSuscription(response: any): any {
     this.userRoles = response;
     this.broadcastService.broadcast(BroadcastKeys.userRoles, response);
   }

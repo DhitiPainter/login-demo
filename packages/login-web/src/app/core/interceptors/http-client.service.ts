@@ -6,13 +6,14 @@ import { IHttpOptions, IRequestOptions } from 'src/app/interfaces';
 
 @Injectable()
 export class HttpClientService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  get(url: string, headers?: any, params?: any, options?: IHttpOptions) {
+  get(url: string, headers?: any, params?: any, options?: IHttpOptions): any {
     url = this.updateUrl(url);
-    return this.http.get(url, (
-      this.getRequestOptions(headers, params, options)
-    ) as any);
+    return this.http.get(
+      url,
+      this.getRequestOptions(headers, params, options) as any
+    );
   }
 
   post(
@@ -21,24 +22,44 @@ export class HttpClientService {
     headers?: any,
     params?: any,
     options?: IHttpOptions
-  ) {
+  ): any {
     url = this.updateUrl(url);
-    return this.http.post(url, body, (
-      this.getRequestOptions(headers, params, options)
-    ) as any);
+    return this.http.post(
+      url,
+      body,
+      this.getRequestOptions(headers, params, options) as any
+    );
   }
 
-  put(url: string, body: any, headers?: any, params?: any, options?: IHttpOptions) {
+  put(
+    url: string,
+    body: any,
+    headers?: any,
+    params?: any,
+    options?: IHttpOptions
+  ): any {
     url = this.updateUrl(url);
-    return this.http.put(url, body, this.getRequestOptions(headers, params, options) as any);
+    return this.http.put(
+      url,
+      body,
+      this.getRequestOptions(headers, params, options) as any
+    );
   }
 
-  delete(url: string, headers?: any, params?: any, options?: IHttpOptions) {
+  delete(
+    url: string,
+    headers?: any,
+    params?: any,
+    options?: IHttpOptions
+  ): any {
     url = this.updateUrl(url);
-    return this.http.delete(url, this.getRequestOptions(headers, params, options) as any);
+    return this.http.delete(
+      url,
+      this.getRequestOptions(headers, params, options) as any
+    );
   }
 
-  private updateUrl(req: string) {
+  private updateUrl(req: string): any {
     if (req.indexOf('http://') === -1) {
       return `${environment.origin}/${req}`;
     } else {
